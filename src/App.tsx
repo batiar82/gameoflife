@@ -24,18 +24,24 @@ const getNeighbors = (grid: boolean[][], i: number, j: number) => {
   return neighbors;
 }
 
-const App: FC = () => {
-  const [grid, setGrid] = useState(() => {
-    let grid = [];
+const getNewGrid = () => {
+  let grid = [];
     for (let i = 0; i < numRows; i++) {
       grid.push(Array.from(Array(numCols), () => false))
     }
     return grid;
-  })
+};
+
+const App: FC = () => {
+  const [grid, setGrid] = useState(getNewGrid);
+  
   const [running, setRunning] = useState(false);
   const runningRef = useRef(false);
   runningRef.current = running;
 
+  const reset = () => {
+    setGrid(getNewGrid());    
+  }
   const randomize = () => {
     let grid = [];
     for (let i = 0; i < numRows; i++) {
@@ -73,6 +79,7 @@ const App: FC = () => {
         setTimeout(
           runSimulation, 1000);
       }}>{running ? 'Stop' : 'Start'}</button>
+      <button onClick={reset} disabled={running}>Reset</button>
       <button onClick={randomize} disabled={running}>Randoimze</button>
       <div style={{
         display: 'grid',
