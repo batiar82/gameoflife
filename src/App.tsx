@@ -83,15 +83,17 @@ const App: FC = () => {
       <button onClick={randomize} disabled={running}>Randoimze</button>
       <div style={{
         display: 'grid',
+        width: numRows*20,
         gridTemplateColumns: 'repeat(50,20px)',
-        gridTemplateRows: 'repeat(50,20px)'
+        gridTemplateRows: 'repeat(50,20px)',
+        borderTop: '1px solid black',
+        borderLeft: '1px solid black'
       }
 
       }>
         {grid.map((row, i) => row.map((col, j) => <div key={`${i}-${j}`} style={{
-          width: 20,
-          height: 20,
-          border: '1px solid black',
+          borderBottom: '1px solid black',
+          borderRight: '1px solid black',
           background: grid[i][j] ? 'pink' : undefined
         }}
           onClick={() => {
