@@ -24,7 +24,7 @@ const getNeighbors = (grid: boolean[][], i: number, j: number) => {
   return neighbors;
 };
 
-const getNewGrid = (cellResolverFn = ()=> false) => {
+const getNewGrid = (cellResolverFn = () => false) => {
   let grid: boolean[][] = [];
   for (let i = 0; i < numRows; i++) {
     grid.push(Array.from(Array(numCols), cellResolverFn));
@@ -33,12 +33,7 @@ const getNewGrid = (cellResolverFn = ()=> false) => {
 };
 
 const randomize = (weight) => {
-//   let grid: boolean[][] = [];
-//   for (let i = 0; i < numRows; i++) {
-//     grid.push(Array.from(Array(numCols), () => Math.random() > weight / 100));
-//   }
-//   return grid;
-return getNewGrid(()=> Math.random() > weight / 100);
+  return getNewGrid(() => Math.random() > weight / 100);
 };
 
 export function useGameOfLife({ numRows }) {
