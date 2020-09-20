@@ -1,8 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+John Conway's Game of Life implemented with React Hooks.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn install`
+Install the app.
 
 ### `yarn start`
 
