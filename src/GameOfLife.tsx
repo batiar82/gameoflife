@@ -1,6 +1,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import produce from "immer";
-
+type config = {
+  numRows: number
+}
 const numRows = 50;
 const numCols = 50;
 const initialRandomWeight = 100;
@@ -32,11 +34,11 @@ const getNewGrid = (cellResolverFn = () => false) => {
   return grid;
 };
 
-const randomize = (weight) => {
+const randomize = (weight : number) => {
   return getNewGrid(() => Math.random() > weight / 100);
 };
 
-export function useGameOfLife({ numRows }) {
+export function useGameOfLife({ numRows } : config) {
   const [grid, setGrid] = useState(getNewGrid);
   const [running, setRunning] = useState(false);
   const runningRef = useRef(false);
@@ -71,7 +73,7 @@ export function useGameOfLife({ numRows }) {
     });
     setTimeout(() => runSimulation(), 200);
   }, [numRows]);
-  const handleCellClick = (row, col) => {
+  const handleCellClick = (row : number, col: number) => {
     const newGrid = produce(grid, (draftGrid) => {
       draftGrid[row][col] = !grid[row][col];
     });
